@@ -153,7 +153,7 @@ Al encontrar la simetría de escala en $x$, la resolución de la EDO se reduce a
 
 
 <details>
-<summary><b>📅 22/01/2026 Cálculo Sistemático del Generador de Simetría (Ecuación Definitoria)</b></summary>
+<summary><b>📅 22/01/2026: Cálculo Sistemático del Generador de Simetría (Ecuación Definitoria)</b></summary>
 
 Antes de resolver la EDO, necesito encontrar el generador $\mathbf{X} = \xi \partial_x + \eta \partial_y$ sin recurrir a tablas. Para ello, debo resolver la **Ecuación Definitoria de Lie**.
 
@@ -185,4 +185,32 @@ $$-xy \xi_x - y^2 \xi_y = -y \xi$$
 Divido toda la expresión por $-y$:
 $$x \xi_x + y \xi_y = \xi$$
 
-Para que esta igualdad se mantenga, si asumo que $\xi$ solo depende de $x$ (
+Para que esta igualdad se mantenga, si asumo que $\xi$ solo depende de $x$ (haciendo $\xi_y = 0$):
+$$x \frac{d\xi}{dx} = \xi \implies \frac{d\xi}{\xi} = \frac{dx}{x}$$
+
+Integrando ambos lados, obtengo $\ln|\xi| = \ln|x|$, por lo tanto:
+$$\xi = x$$
+
+**Resultado del cálculo:** He hallado sistemáticamente el generador $\mathbf{\xi = x, \eta = 0}$.
+
+---
+
+### 4. Verificación de una segunda simetría (Caso B)
+¿Qué ocurre si asumo que $\xi = 0$? 
+La ecuación original del Paso 2 se convierte en:
+$$x^2 \eta_x + xy \eta_y = x \eta$$
+
+Divido por $x$:
+$$x \eta_x + y \eta_y = \eta$$
+
+Si asumo que $\eta$ solo depende de $y$ (haciendo $\eta_x = 0$):
+$$y \frac{d\eta}{dy} = \eta \implies \eta = y$$
+
+**Resultado del cálculo:** He hallado un segundo generador válido $\mathbf{\xi = 0, \eta = y}$.
+
+
+
+### 💡 Conclusión del procedimiento
+Este método me permite "extraer" la simetría directamente de la estructura de la EDO. He demostrado que la ecuación $y' = y/x$ admite al menos dos generadores de escala independientes ($\xi=x$ o $\eta=y$). En el ejercicio práctico, utilizaré el primero ($\xi=x, \eta=0$) para construir el factor integrante $\mu$.
+
+</details>
