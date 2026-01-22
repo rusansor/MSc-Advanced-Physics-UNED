@@ -31,12 +31,15 @@ $$\mathbf{X} = \xi(x, y) \frac{\partial}{\partial x} + \eta(x, y) \frac{\partial
 ### 2. Simetrías Estándares (Candidatos comunes)
 Cuando no conocemos $\xi$ y $\eta$, probamos estos "moldes" geométricos:
 
-| Transformación | $\xi(x, y)$ | $\eta(x, y)$ |
-| :--- | :--- | :--- |
-| **Traslación en $x$** | $1$ | $0$ |
-| **Traslación en $y$** | $0$ | $1$ |
-| **Escala (Elongación)** | $x$ | $y$ |
-| **Rotación** | $y$ | $-x$ |
+| Transformación | $\xi(x, y)$ | $\eta(x, y)$ | Efecto Geométrico |
+| :--- | :---: | :---: | :--- |
+| **Traslación en $x$** | $1$ | $0$ | Desplazamiento horizontal |
+| **Traslación en $y$** | $0$ | $1$ | Desplazamiento vertical |
+| **Escala en $x$** | $x$ | $0$ | Estiramiento horizontal |
+| **Escala en $y$** | $0$ | $y$ | Estiramiento vertical |
+| **Escala Uniforme** | $x$ | $y$ | Zoom proporcional |
+| **Rotación** | $y$ | $-x$ | Giro respecto al origen |
+| **Proyectiva** | $x^2$ | $xy$ | Cambio de perspectiva |
 
 ### 3. La Primera Prolongación (Extensión)
 Para que el generador pueda actuar sobre una EDO (que tiene derivadas $y'$), necesitamos extenderlo:
@@ -69,96 +72,85 @@ El método sistemático elimina la incertidumbre. No importa si la EDO parece co
 
 
 <details>
-<summary><b>📅 21/01/2026: Resolución Paso a Paso: EDO $y' = y/x$ mediante Simetrías de Lie</b></summary>
+<summary><b>📅 Resolución Paso a Paso: EDO $y' = y/x$ mediante Simetrías de Lie</b></summary>
 
 ### Enunciado del Ejercicio
-Resolver la ecuación diferencial ordinaria de primer orden:
+Resolver la siguiente ecuación diferencial ordinaria de primer orden de forma sistemática:
 $$\frac{dy}{dx} = \frac{y}{x}$$
 
 ---
 
 ### Paso 1: Identificación de componentes ($M$ y $N$)
-Para trabajar con el método de Lie, primero reescribo la ecuación en su forma diferencial igualada a cero:
+Para aplicar el método de Lie, primero reescribo la ecuación en su **forma diferencial** igualada a cero:
 $$y \, dx - x \, dy = 0$$
 
-En este punto, identifico las funciones que acompañan a cada diferencial:
-* $M(x, y) = y$ (lo que acompaña a $dx$)
-* $N(x, y) = -x$ (lo que acompaña a $dy$)
-* $f(x, y) = \frac{y}{x}$ (la función pendiente original)
-
-Estas etiquetas son fundamentales porque el factor integrante actuará directamente sobre $M$ y $N$ para transformar la ecuación en una forma integrable.
+De aquí extraigo los componentes fundamentales que me servirán para organizar los cálculos:
+* **$M(x, y) = y$**: Es la función que acompaña al diferencial $dx$.
+* **$N(x, y) = -x$**: Es la función que acompaña al diferencial $dy$.
+* **$f(x, y) = y/x$**: Es la pendiente original de la ecuación (mi función $y'$).
 
 ---
 
 ### Paso 2: Descubrimiento de la simetría ($\xi$ y $\eta$)
-Para resolver la ecuación de forma sistemática, necesito encontrar las funciones del generador infinitesimal $\xi$ y $\eta$. No las asumo por azar, sino que pruebo candidatos basados en la geometría del problema. 
-
-Decido probar con el candidato de **simetría de escala en $x$**, cuyas funciones son:
+Para hallar el generador infinitesimal, consulto mi tabla de candidatos estándar. Decido probar con la **Escala en $x$**, que asume que la ecuación es invariante si estiramos el eje horizontal. Las funciones para este candidato son:
 $$\xi = x, \quad \eta = 0$$
 
-
-
-Para confirmar que este descubrimiento es válido, lo someto a la **Condición de Invariancia**:
+Para validar que este "descubrimiento" es una simetría real de la EDO, aplico la **Condición de Invariancia**:
 $$\eta_x + (\eta_y - \xi_x)f - \xi_y f^2 = \xi f_x + \eta f_y$$
 
-Calculo las derivadas necesarias de mi función $f = y/x$:
-* $f_x = -\frac{y}{x^2}$
-* $f_y = \frac{1}{x}$
+
+
+Calculo las derivadas necesarias para la fórmula. Es importante notar que como he definido $\eta = 0$ (una constante), sus derivadas respecto a cualquier variable son nulas:
+* **$\eta_x = 0$** y **$\eta_y = 0$** (Derivadas de la función constante cero).
+* **$\xi_x = 1$** y **$\xi_y = 0$** (Derivadas de $\xi = x$).
+* **$f_x = -y/x^2$** y **$f_y = 1/x$** (Derivadas de la pendiente original $y/x$).
 
 Sustituyo en la condición:
-$$0 + (0 - 1)\frac{y}{x} - 0 = x \left(-\frac{y}{x^2}\right) + 0 \implies -\frac{y}{x} = -\frac{y}{x}$$
+$$(0) + (0 - 1)\frac{y}{x} - (0)\frac{y^2}{x^2} = (x) \left(-\frac{y}{x^2}\right) + (0)\left(\frac{1}{x}\right)$$
+$$-\frac{y}{x} = -\frac{y}{x}$$
 
-Como la igualdad se cumple, he confirmado que mi descubrimiento es correcto: $\xi = x$ y $\eta = 0$ definen una simetría real de la ecuación.
+La igualdad es idéntica, lo que confirma que mi elección de $\xi = x$ y $\eta = 0$ es una simetría válida.
 
 ---
 
 ### Paso 3: Cálculo del Factor Integrante ($\mu$)
-Con la simetría validada, calculo el factor integrante $\mu$, que es el multiplicador que "arreglará" la ecuación:
+Con la simetría confirmada, calculo el factor integrante de Lie, que es la "llave" para convertir la EDO en una ecuación exacta:
 $$\mu = \frac{1}{\eta - \xi f}$$
 
-Sustituyo mis valores:
+Sustituyo mis funciones:
 $$\mu = \frac{1}{0 - (x)\left(\frac{y}{x}\right)} = \frac{1}{-y} = -\frac{1}{y}$$
 
 ---
 
 ### Paso 4: Transformación y Separación de Variables
-Multiplico mi ecuación original ($y \, dx - x \, dy = 0$) por el factor $\mu = -1/y$:
+Multiplico mi ecuación diferencial original ($y \, dx - x \, dy = 0$) por el factor $\mu = -1/y$:
 1.  $(y) \cdot \left(-\frac{1}{y}\right) dx = -1 \, dx$
 2.  $(-x) \cdot \left(-\frac{1}{y}\right) dy = \frac{x}{y} \, dy$
 
-Obtengo la nueva ecuación:
+Obtengo la nueva forma de la ecuación:
 $$-1 \, dx + \frac{x}{y} \, dy = 0$$
 
-Para que la integración sea directa, divido toda la expresión por $x$ para separar las variables:
+Para integrar cómodamente, divido toda la expresión por $x$ para dejar cada diferencial con su variable correspondiente:
 $$\frac{-1}{x} dx + \frac{1}{y} dy = 0$$
 
 ---
 
 ### Paso 5: Integración y Solución Final
-Ahora aplico la integral a cada término, utilizando la regla $\int \frac{1}{u} du = \ln|u|$:
+Integro ambos términos aplicando la regla fundamental $\int \frac{1}{u} du = \ln|u|$:
 $$\int -\frac{1}{x} dx + \int \frac{1}{y} dy = C \implies -\ln|x| + \ln|y| = C$$
 
-Utilizo las propiedades de los logaritmos para simplificar:
+Utilizo las propiedades de los logaritmos para simplificar la expresión:
 $$\ln\left(\frac{y}{x}\right) = C$$
 
-Aplico la función exponencial a ambos lados para despejar $y$:
+Para eliminar el logaritmo, aplico la función exponencial a ambos lados:
 $$\frac{y}{x} = e^C$$
 
-Finalmente, defino $K = e^C$ como mi constante de integración:
+Finalmente, defino la constante de integración $K = e^C$ para obtener la solución analítica general:
 $$\mathbf{y = Kx}$$
 
-Esta solución representa una familia de líneas rectas que pasan por el origen, lo cual es coherente con la simetría de escala que descubrí al inicio.
+### 💡 Conclusión
+El proceso sistemático demuestra que al encontrar la simetría de escala en $x$, la resolución de la EDO se reduce a una integración elemental. La solución final $y = Kx$ representa una familia de rectas que nacen del origen, lo cual es geométricamente consistente con la simetría de estiramiento horizontal detectada.
 
-</details>
-
----
-
-<details>
-<summary><b>📅 22/01/2026: Texooooooooo</b> (Clic para expandir)</summary>
-
-- **Idea:** 
-- **Fórmula:** 
-- **Ajá!:** 
 </details>
 
 
