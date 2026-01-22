@@ -21,8 +21,9 @@ lineal o el momento angular. Al final, todo encaja: la geometría del universo d
 encontrar esas simetrías en las ecuaciones diferenciales, puedo resolverlas de manera estructurada y profunda.
 </details>
 
+
 <details>
-<summary><b>📅 21/01/2026: Formulario Maestro: Simetrías de Lie y Resolución de EDOs</b></summary>
+<summary><b>📅 22/01/2026: Formulario Maestro: Simetrías de Lie y Resolución de EDOs</b></summary>
 
 ### 1. El Generador Infinitesimal ($\mathbf{X}$)
 Para una EDO $y' = f(x,y)$, el generador define la transformación infinitesimal:
@@ -72,7 +73,7 @@ El método sistemático elimina la incertidumbre. No importa si la EDO parece co
 
 
 <details>
-<summary><b>📅 Resolución Paso a Paso: EDO $y' = y/x$ mediante Simetrías de Lie</b></summary>
+<summary><b>📅 22/01/2026: Resolución Paso a Paso: EDO y' = y/x mediante Simetrías de Lie</b></summary>
 
 ### Enunciado del Ejercicio
 Resolver la siguiente ecuación diferencial ordinaria de primer orden de forma sistemática:
@@ -84,7 +85,7 @@ $$\frac{dy}{dx} = \frac{y}{x}$$
 Para aplicar el método de Lie, primero reescribo la ecuación en su **forma diferencial** igualada a cero:
 $$y \, dx - x \, dy = 0$$
 
-De aquí extraigo los componentes fundamentales que me servirán para organizar los cálculos:
+De aquí extraigo los componentes fundamentales para organizar los cálculos:
 * **$M(x, y) = y$**: Es la función que acompaña al diferencial $dx$.
 * **$N(x, y) = -x$**: Es la función que acompaña al diferencial $dy$.
 * **$f(x, y) = y/x$**: Es la pendiente original de la ecuación (mi función $y'$).
@@ -95,26 +96,26 @@ De aquí extraigo los componentes fundamentales que me servirán para organizar 
 Para hallar el generador infinitesimal, consulto mi tabla de candidatos estándar. Decido probar con la **Escala en $x$**, que asume que la ecuación es invariante si estiramos el eje horizontal. Las funciones para este candidato son:
 $$\xi = x, \quad \eta = 0$$
 
-Para validar que este "descubrimiento" es una simetría real de la EDO, aplico la **Condición de Invariancia**:
+Para validar que este descubrimiento es una simetría real, aplico la **Condición de Invariancia**:
 $$\eta_x + (\eta_y - \xi_x)f - \xi_y f^2 = \xi f_x + \eta f_y$$
 
 
 
-Calculo las derivadas necesarias para la fórmula. Es importante notar que como he definido $\eta = 0$ (una constante), sus derivadas respecto a cualquier variable son nulas:
-* **$\eta_x = 0$** y **$\eta_y = 0$** (Derivadas de la función constante cero).
-* **$\xi_x = 1$** y **$\xi_y = 0$** (Derivadas de $\xi = x$).
-* **$f_x = -y/x^2$** y **$f_y = 1/x$** (Derivadas de la pendiente original $y/x$).
+Calculo las derivadas necesarias. Como he definido $\eta = 0$ (una constante), sus derivadas son nulas:
+* **$\eta_x = 0$** y **$\eta_y = 0$**
+* **$\xi_x = 1$** y **$\xi_y = 0$** (ya que $\xi = x$)
+* **$f_x = -y/x^2$** y **$f_y = 1/x$** (derivadas de la pendiente original $y/x$)
 
 Sustituyo en la condición:
 $$(0) + (0 - 1)\frac{y}{x} - (0)\frac{y^2}{x^2} = (x) \left(-\frac{y}{x^2}\right) + (0)\left(\frac{1}{x}\right)$$
 $$-\frac{y}{x} = -\frac{y}{x}$$
 
-La igualdad es idéntica, lo que confirma que mi elección de $\xi = x$ y $\eta = 0$ es una simetría válida.
+La igualdad es idéntica, lo que confirma que la simetría es $\xi = x$ y $\eta = 0$.
 
 ---
 
 ### Paso 3: Cálculo del Factor Integrante ($\mu$)
-Con la simetría confirmada, calculo el factor integrante de Lie, que es la "llave" para convertir la EDO en una ecuación exacta:
+Calculo el factor integrante de Lie, que es la "llave" para convertir la EDO en una ecuación exacta:
 $$\mu = \frac{1}{\eta - \xi f}$$
 
 Sustituyo mis funciones:
@@ -130,36 +131,58 @@ Multiplico mi ecuación diferencial original ($y \, dx - x \, dy = 0$) por el fa
 Obtengo la nueva forma de la ecuación:
 $$-1 \, dx + \frac{x}{y} \, dy = 0$$
 
-Para integrar cómodamente, divido toda la expresión por $x$ para dejar cada diferencial con su variable correspondiente:
+Para integrar cómodamente, divido toda la expresión por $x$ para separar las variables:
 $$\frac{-1}{x} dx + \frac{1}{y} dy = 0$$
 
 ---
 
 ### Paso 5: Integración y Solución Final
-Integro ambos términos aplicando la regla fundamental $\int \frac{1}{u} du = \ln|u|$:
+Integro ambos términos aplicando la regla $\int \frac{1}{u} du = \ln|u|$:
 $$\int -\frac{1}{x} dx + \int \frac{1}{y} dy = C \implies -\ln|x| + \ln|y| = C$$
 
-Utilizo las propiedades de los logaritmos para simplificar la expresión:
-$$\ln\left(\frac{y}{x}\right) = C$$
+Despejo utilizando las propiedades de la exponencial y el logaritmo:
+$$\ln\left(\frac{y}{x}\right) = C \implies \frac{y}{x} = e^C$$
 
-Para eliminar el logaritmo, aplico la función exponencial a ambos lados:
-$$\frac{y}{x} = e^C$$
-
-Finalmente, defino la constante de integración $K = e^C$ para obtener la solución analítica general:
+Finalmente, defino la constante de integración $K = e^C$:
 $$\mathbf{y = Kx}$$
 
 ### 💡 Conclusión
-El proceso sistemático demuestra que al encontrar la simetría de escala en $x$, la resolución de la EDO se reduce a una integración elemental. La solución final $y = Kx$ representa una familia de rectas que nacen del origen, lo cual es geométricamente consistente con la simetría de estiramiento horizontal detectada.
+Al encontrar la simetría de escala en $x$, la resolución de la EDO se reduce a una integración elemental. La solución final $y = Kx$ representa una familia de rectas que nacen del origen.
 
 </details>
 
 
+<details>
+<summary><b>📅 22/01/2026 Cálculo Sistemático del Generador de Simetría (Ecuación Definitoria)</b></summary>
 
+Antes de resolver la EDO, necesito encontrar el generador $\mathbf{X} = \xi \partial_x + \eta \partial_y$ sin recurrir a tablas. Para ello, debo resolver la **Ecuación Definitoria de Lie**.
 
+### 1. Planteamiento de la Ecuación Definitoria
+Para cualquier EDO $y' = f(x,y)$, el generador debe satisfacer:
+$$\eta_x + (\eta_y - \xi_x)f - \xi_y f^2 = \xi f_x + \eta f_y$$
 
+En mi caso, con $f = \frac{y}{x}$, calculo primero las derivadas parciales de la pendiente:
+* $f_x = \frac{\partial}{\partial x}(\frac{y}{x}) = -\frac{y}{x^2}$
+* $f_y = \frac{\partial}{\partial y}(\frac{y}{x}) = \frac{1}{x}$
 
+Sustituyo estos valores en la ecuación:
+$$\eta_x + (\eta_y - \xi_x)\frac{y}{x} - \xi_y \frac{y^2}{x^2} = \xi \left(-\frac{y}{x^2}\right) + \eta \left(\frac{1}{x}\right)$$
 
+### 2. Simplificación Algebraica
+Multiplico toda la ecuación por $x^2$ para eliminar denominadores y facilitar la separación de términos:
+$$x^2 \eta_x + xy(\eta_y - \xi_x) - y^2 \xi_y = -y \xi + x \eta$$
 
+Esta es una ecuación con dos incógnitas ($\xi$ y $\eta$). Para resolverla de forma sistemática, utilizo el método de **separación por potencias de $y$**.
 
+### 3. Resolución del Sistema (Búsqueda de soluciones simples)
+Asumo que los componentes del generador son funciones elementales. 
 
+**Caso A: Busco una simetría donde $\eta = 0$**
+Si decido que no hay desplazamiento en $y$, la ecuación se reduce drásticamente:
+$$x^2(0) + xy(0 - \xi_x) - y^2 \xi_y = -y \xi + x(0)$$
+$$-xy \xi_x - y^2 \xi_y = -y \xi$$
 
+Divido toda la expresión por $-y$:
+$$x \xi_x + y \xi_y = \xi$$
+
+Para que esta igualdad se mantenga, si asumo que $\xi$ solo depende de $x$ (
