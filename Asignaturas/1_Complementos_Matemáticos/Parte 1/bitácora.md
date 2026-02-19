@@ -317,3 +317,211 @@ $$\mathbf{y = C_1 x + C_2}$$
 Lo fascinante aquí es que el método no "adivina" la solución. Al separar por potencias de $y'$, el álgebra nos obliga a encontrar las funciones $\xi$ y $\eta$ que dejan la curvatura ($y''$) invariante. Elegir $\mathbf{X} = \partial_y$ significa que la EDO no cambia si la desplazamos verticalmente, lo cual es lógicamente consistente con una familia de rectas paralelas.
 
 </details>
+
+<details>
+<summary><b>📅 19/02/2026: Resolución Sistemática: y'' = y' (El efecto de la pendiente en la simetría)</b></summary>
+
+### Enunciado del Ejercicio
+Resolver mediante el método de Lie la EDO de segundo orden:
+$$y'' = y'$$
+
+---
+
+### Paso 1: Identificación de la Función $f$
+Identificamos la función $f$ y sus derivadas parciales:
+* **$f(x, y, y') = y'$**
+* $f_x = 0$
+* $f_y = 0$
+* $f_{y'} = 1$
+
+### Paso 2: Planteamiento de la Condición de Invariancia
+Aplicamos la fórmula: $\eta^{(2)} - \xi f_x - \eta f_y - \eta^{(1)} f_{y'} = 0$.
+Sustituyendo los valores de $f$ y sus derivadas:
+$$\eta^{(2)} - \eta^{(1)} = 0 \quad (\text{evaluado en } y'' = y')$$
+
+### Paso 3: Expansión y Sustitución
+Sustituimos las fórmulas de las prolongaciones $\eta^{(1)}$ y $\eta^{(2)}$. 
+*Ojo:* En la fórmula de $\eta^{(2)}$, donde aparezca $y''$, debemos escribir $y'$.
+
+$$\underbrace{\eta_{xx} + (2\eta_{xy} - \xi_{xx})y' + (\eta_{yy} - 2\xi_{xy})(y')^2 - \xi_{yy}(y')^3 + (\eta_y - 2\xi_x - 3\xi_y y')y'}_{\eta^{(2)}} - \underbrace{(\eta_x + (\eta_y - \xi_x)y' - \xi_y(y')^2)}_{\eta^{(1)}} = 0$$
+
+### Paso 4: Separación por Potencias de $y'$ (Ecuaciones Definitorias)
+Agrupamos los términos según el grado de $y'$ para obtener el sistema de ecuaciones:
+
+1.  **$(y')^3$:** $-\xi_{yy} = 0$
+2.  **$(y')^2$:** $\eta_{yy} - 2\xi_{xy} - 3\xi_y + \xi_y = 0 \implies \eta_{yy} - 2\xi_{xy} - 2\xi_y = 0$
+3.  **$(y')^1$:** $(2\eta_{xy} - \xi_{xx}) + (\eta_y - 2\xi_x) - (\eta_y - \xi_x) = 0 \implies 2\eta_{xy} - \xi_{xx} - \xi_x = 0$
+4.  **$(y')^0$:** $\eta_{xx} - \eta_x = 0$
+
+
+
+### Paso 5: Selección de un Generador
+Buscamos la solución más simple. Probamos con una simetría de traslación en $y$ (ya que la ecuación no depende explícitamente de $y$):
+* Si probamos **$\xi = 0$**:
+    * De (1), (2) y (3): $\eta_{yy} = 0$ y $2\eta_{xy} = 0$.
+    * De (4): $\eta_{xx} - \eta_x = 0 \implies \eta = e^x$ o $\eta = 1$.
+* Elegimos **$\xi = 0, \eta = 1$** (Traslación en $y$). Generador: $\mathbf{X} = \partial_y$.
+
+### Paso 6: Cambio a Variables Canónicas ($r, s$)
+Para $\mathbf{X} = \partial_y$:
+* **$r = x$** (Invariante)
+* **$s = y$** (Variable de traslación)
+
+### Paso 7: Reducción e Integración
+La EDO $y'' = y'$ en las nuevas coordenadas se mantiene como:
+$$\frac{d^2s}{dr^2} = \frac{ds}{dr}$$
+
+1. Sea $v = \frac{ds}{dr}$: $\frac{dv}{dr} = v$.
+2. Separamos variables: $\frac{dv}{v} = dr \implies \ln|v| = r + C \implies v = C_1 e^r$.
+3. Sustituimos $v$: $\frac{ds}{dr} = C_1 e^r$.
+4. Integramos de nuevo: $s = C_1 e^r + C_2$.
+
+### Paso 8: Solución Final
+Deshacemos el cambio ($s=y, r=x$):
+$$\mathbf{y = C_1 e^x + C_2}$$
+
+
+
+### 💡 El Momento "¡Ajá!"
+En el Paso 4 hemos visto cómo la estructura de la EDO ($y'' = y'$) "contamina" las ecuaciones definitorias. A diferencia del ejemplo anterior ($y''=0$), aquí los términos de $\eta^{(1)}$ se restan de los de $\eta^{(2)}$, alterando los coeficientes de $(y')^1$ y $(y')^0$. Es un recordatorio de que la simetría está íntimamente ligada a cómo cambian las derivadas entre sí.
+
+</details>
+
+<details>
+<summary><b>📅 19/02/2026: Resolución Sistemática: y'' = (y')²/y (La potencia de las simetrías en EDOs No Lineales)</b></summary>
+
+### Enunciado del Ejercicio
+Resolver mediante el método sistemático de Lie la EDO no lineal de segundo orden:
+$$y'' = \frac{(y')^2}{y}$$
+
+---
+
+### Paso 1: Identificación de la Función $f$
+Identificamos la función $f$ y sus derivadas parciales:
+* **$f(x, y, y') = \frac{(y')^2}{y}$**
+* $f_x = 0$
+* $f_y = -\frac{(y')^2}{y^2}$
+* $f_{y'} = \frac{2y'}{y}$
+
+### Paso 2: Planteamiento de la Condición de Invariancia
+Aplicamos la fórmula: $\eta^{(2)} - \xi f_x - \eta f_y - \eta^{(1)} f_{y'} = 0$.
+Sustituimos $f$ y sus derivadas:
+$$\eta^{(2)} - \eta \left( -\frac{(y')^2}{y^2} \right) - \eta^{(1)} \left( \frac{2y'}{y} \right) = 0 \quad (\text{evaluado en } y'' = \frac{(y')^2}{y})$$
+
+### Paso 3: Expansión y Sustitución Crítica
+Sustituimos las prolongaciones. Donde aparezca $y''$, escribimos $\frac{(y')^2}{y}$.
+
+$$\underbrace{\eta_{xx} + (2\eta_{xy} - \xi_{xx})y' + (\eta_{yy} - 2\xi_{xy})(y')^2 - \xi_{yy}(y')^3 + (\eta_y - 2\xi_x - 3\xi_y y')\frac{(y')^2}{y}}_{\eta^{(2)}} + \frac{\eta(y')^2}{y^2} - \frac{2y'}{y}\underbrace{(\eta_x + (\eta_y - \xi_x)y' - \xi_y(y')^2)}_{\eta^{(1)}} = 0$$
+
+### Paso 4: Separación por Potencias de $y'$ (Ecuaciones Definitorias)
+Agrupamos términos. Este paso revela la "arquitectura" de la simetría:
+
+1.  **$(y')^3$:** $-\xi_{yy} - \frac{3\xi_y}{y} + \frac{2\xi_y}{y} = 0 \implies -\xi_{yy} - \frac{\xi_y}{y} = 0$
+2.  **$(y')^2$:** $(\eta_{yy} - 2\xi_{xy}) + \frac{\eta_y - 2\xi_x}{y} + \frac{\eta}{y^2} - \frac{2(\eta_y - \xi_x)}{y} = 0 \implies \eta_{yy} - 2\xi_{xy} - \frac{\eta_y}{y} + \frac{\eta}{y^2} = 0$
+3.  **$(y')^1$:** $(2\eta_{xy} - \xi_{xx}) - \frac{2\eta_x}{y} = 0$
+4.  **$(y')^0$:** $\eta_{xx} = 0$
+
+
+
+### Paso 5: Selección de un Generador
+Buscamos una solución sencilla. Probamos con la **Escala en $y$** (ya que la ecuación es homogénea en $y$):
+* Probamos **$\xi = 0, \eta = y$**.
+* Verificamos en las ecuaciones:
+    1. $0 = 0$ (OK)
+    2. $\eta_{yy} (0) - 2(0) - \frac{1}{y} + \frac{y}{y^2} = 0 \implies -1/y + 1/y = 0$ (OK)
+    3. $2(0) - 0 - 0 = 0$ (OK)
+    4. $0 = 0$ (OK)
+* Generador: $\mathbf{X} = y\partial_y$.
+
+### Paso 6: Cambio a Variables Canónicas ($r, s$)
+Para $\mathbf{X} = y\partial_y$:
+* **$r = x$** (Invariante, pues $\mathbf{X}x = 0$)
+* **$s = \ln(y)$** (Porque $y\frac{\partial}{\partial y}(\ln y) = y \cdot \frac{1}{y} = 1$)
+
+### Paso 7: Reducción e Integración
+Transformamos la EDO a las nuevas coordenadas:
+1. $s = \ln y \implies \frac{ds}{dr} = \frac{y'}{y}$
+2. $\frac{d^2s}{dr^2} = \frac{y''y - (y')^2}{y^2}$
+3. Sustituimos la EDO original $y'' = (y')^2/y$:
+   $$\frac{d^2s}{dr^2} = \frac{\frac{(y')^2}{y}y - (y')^2}{y^2} = \frac{(y')^2 - (y')^2}{y^2} = 0$$
+
+¡La EDO no lineal se ha convertido en **$\frac{d^2s}{dr^2} = 0$**!
+
+4. Integración: $s = C_1 r + C_2$.
+
+### Paso 8: Solución Final
+Deshacemos el cambio ($s = \ln y, r = x$):
+$$\ln y = C_1 x + C_2 \implies \mathbf{y = e^{C_1 x + C_2}}$$
+O de forma más elegante: **$y = Ae^{Bx}$**.
+
+
+
+### 💡 El Momento "¡Ajá!"
+Es impactante ver cómo una ecuación no lineal desaparece por completo al elegir las coordenadas correctas. La simetría $y\partial_y$ (escala) nos dice que lo importante no es el valor de $y$, sino su **tasa de cambio relativa**. Por eso el logaritmo "linealiza" el problema. Como *Solution Architect*, esto es el equivalente a normalizar una base de datos para que las consultas complejas se vuelvan simples sumas.
+
+</details>
+
+
+<details>
+<summary><b>📅 19/02/2026: Resolución Sistemática: y'' + ω²y = 0 (El Oscilador Armónico y sus simetrías)</b></summary>
+
+### Enunciado del Ejercicio
+Resolver mediante el método de Lie la ecuación del oscilador armónico simple, pilar fundamental de la mecánica clásica y cuántica:
+$$y'' = -\omega^2 y$$
+
+---
+
+### Paso 1: Identificación de la Función $f$
+Identificamos la función $f$ (la fuerza por unidad de masa en términos de Hooke) y sus derivadas:
+* **$f(x, y, y') = -\omega^2 y$**
+* $f_x = 0$ (Invariancia temporal: el sistema es autónomo).
+* $f_y = -\omega^2$ (La fuerza depende linealmente del desplazamiento).
+* $f_{y'} = 0$ (Sistema conservativo: no hay fricción).
+
+### Paso 2: Planteamiento de la Condición de Invariancia
+Aplicamos la fórmula: $\eta^{(2)} - \xi f_x - \eta f_y - \eta^{(1)} f_{y'} = 0$.
+$$\eta^{(2)} + \omega^2 \eta = 0$$
+
+### Paso 3: Expansión de la Segunda Prolongación
+Sustituimos la fórmula de $\eta^{(2)}$ y, donde aparezca $y''$, escribimos $-\omega^2 y$:
+$$\eta_{xx} + (2\eta_{xy} - \xi_{xx})y' + (\eta_{yy} - 2\xi_{xy})(y')^2 - \xi_{yy}(y')^3 + (\eta_y - 2\xi_x - 3\xi_y y')(-\omega^2 y) + \omega^2 \eta = 0$$
+
+### Paso 4: Separación por Potencias de $y'$ (Ecuaciones Definitorias)
+1.  **$(y')^3$:** $-\xi_{yy} = 0$
+2.  **$(y')^2$:** $\eta_{yy} - 2\xi_{xy} + 3\omega^2 y \xi_y = 0$
+3.  **$(y')^1$:** $2\eta_{xy} - \xi_{xx} - \omega^2 y (\eta_y - 2\xi_x) = 0$
+4.  **$(y')^0$:** $\eta_{xx} - \omega^2 y (\eta_y - 2\xi_x) + \omega^2 \eta = 0$
+
+### Paso 5: Selección de un Generador (La Simetría de Superposición)
+Probamos la simetría de **Escala en $y$** ($\xi = 0, \eta = y$):
+* Generador: $\mathbf{X} = y\partial_y$. Esta simetría refleja que el oscilador es **lineal**: si duplicas la amplitud, el sistema sigue la misma física.
+
+### Paso 6: Cambio a Variables Canónicas ($r, s$)
+* **$r = x$** (Tiempo)
+* **$s = \ln(y)$** (Fase logarítmica)
+
+### Paso 7: Reducción e Integración
+Transformamos la EDO $y'' = -\omega^2 y$ usando $s = \ln y$:
+1. Reducción a primer orden ($v = s'$): $\frac{dv}{dr} + v^2 + \omega^2 = 0$.
+2. Esta es una **ecuación de Riccati** simple. Integrando: $\frac{1}{\omega} \arctan\left(\frac{v}{\omega}\right) = -r + C_1$.
+
+### Paso 8: Solución Final
+Deshaciendo el logaritmo y la arcotangente:
+$$\mathbf{y = A \cos(\omega x + \phi)}$$
+
+
+
+---
+
+### ⚛️ Interpretación Física Profunda (Análisis de Simetría)
+
+Como físico, lo más revelador de este proceso no es el resultado, sino lo que nos dice sobre la **naturaleza del espacio-tiempo** del sistema:
+
+1. **Simetría Temporal ($\partial_x$):** Al no depender $f$ de $x$, el generador $\mathbf{X} = \partial_x$ es una simetría. Según el **Teorema de Noether**, esta invarianza bajo traslaciones temporales implica la **Conservación de la Energía** ($E = \frac{1}{2}m\dot{y}^2 + \frac{1}{2}m\omega^2 y^2$).
+2. **El Espacio de Fases:** El paso por la función $\arctan$ en la integración no es casual. El método de Lie está mapeando la oscilación lineal en una **rotación en el plano complejo** ($e^{i\omega t}$). La simetría de escala que hemos usado ($\eta=y$) es en realidad una parte de un grupo más grande (SL(2,R)) que gobierna a los sistemas armónicos.
+3. **Linealidad y Superposición:** Que $\eta=y$ sea una simetría válida confirma el principio de superposición. En sistemas no lineales (como el péndulo simple para grandes ángulos), esta simetría se rompe, lo que explica por qué las soluciones dejan de ser senoidales puras.
+
+### 💡 El Momento "¡Ajá!" del Arquitecto
+Este ejercicio demuestra que incluso los sistemas más "predecibles" tienen estructuras de simetría profundas. En el diseño de sistemas (o en física), encontrar la **coordenada cíclica** (en este caso la fase) es lo que permite simplificar un problema dinámico en uno estático.
+
+</details>
