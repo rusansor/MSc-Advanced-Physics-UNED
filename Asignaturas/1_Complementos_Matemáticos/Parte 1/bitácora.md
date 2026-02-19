@@ -252,3 +252,68 @@ Lo más potente de este nivel es el **Teorema de Clasificación de Lie**. He apr
 Como *Solution Architect*, veo una analogía clara: resolver una EDO compleja mediante simetrías es como refactorizar un código monolítico buscando los patrones de diseño subyacentes. Una vez encuentras la simetría (el patrón), la solución (la implementación) se vuelve trivial y elegante.
 
 </details>
+
+<details>
+<summary><b>📅 19/02/2026: Resolución Sistemática: y'' = 0 mediante Simetrías de Lie</b></summary>
+
+### Enunciado del Ejercicio
+Resolver la ecuación diferencial de segundo orden más elemental aplicando el método de Lie sin inferencias previas:
+$$y'' = 0$$
+
+---
+
+### Paso 1: Definición de la Función y sus Derivadas
+Para una EDO de segundo orden $y'' = f(x, y, y')$, identificamos:
+* **$f(x, y, y') = 0$**
+* Derivadas parciales: $f_x = 0$, $f_y = 0$, $f_{y'} = 0$.
+
+### Paso 2: Planteamiento de la Condición de Invariancia
+Utilizamos la condición maestra para segundo orden:
+$$\eta^{(2)} - \xi f_x - \eta f_y - \eta^{(1)} f_{y'} = 0$$
+
+Al ser todas las derivadas de $f$ nulas, la condición se reduce a:
+$$\eta^{(2)} = 0$$
+
+### Paso 3: Expansión de la Segunda Prolongación ($\eta^{(2)}$)
+Sustituimos la fórmula completa de $\eta^{(2)}$ (asumiendo $y'' = 0$ según la EDO):
+$$\eta_{xx} + (2\eta_{xy} - \xi_{xx})y' + (\eta_{yy} - 2\xi_{xy})(y')^2 - \xi_{yy}(y')^3 = 0$$
+
+
+
+### Paso 4: Separación por Potencias de $y'$ (Ecuaciones Definitorias)
+Tratamos a $y'$ como una variable independiente. Para que la igualdad se cumpla, cada coeficiente del polinomio debe ser cero de forma independiente:
+
+1.  **$(y')^3$:** $-\xi_{yy} = 0 \implies \xi$ es lineal en $y$.
+2.  **$(y')^2$:** $\eta_{yy} - 2\xi_{xy} = 0$.
+3.  **$(y')^1$:** $2\eta_{xy} - \xi_{xx} = 0$.
+4.  **$(y')^0$:** $\eta_{xx} = 0 \implies \eta$ es lineal en $x$.
+
+### Paso 5: Selección de un Generador
+De las múltiples soluciones (esta EDO tiene 8 simetrías), elegimos la más simple por inspección del sistema:
+* **$\xi = 0$**
+* **$\eta = 1$**
+(Esto satisface las 4 ecuaciones: $0=0, 0=0, 0=0, 0=0$). Generador: $\mathbf{X} = \partial_y$.
+
+### Paso 6: Cambio a Variables Canónicas ($r, s$)
+Buscamos transformar el generador en una traslación pura ($\mathbf{X} = \partial_s$):
+* **Invariante ($r$):** $\mathbf{X}r = 0 \cdot r_x + 1 \cdot r_y = 0 \implies r = x$.
+* **Variable de traslación ($s$):** $\mathbf{X}s = 0 \cdot s_x + 1 \cdot s_y = 1 \implies s = y$.
+
+### Paso 7: Reducción de Orden e Integración
+La EDO original $y'' = 0$ en las nuevas coordenadas $(r, s)$ sigue siendo:
+$$\frac{d^2s}{dr^2} = 0$$
+
+1. Definimos $v = \frac{ds}{dr}$, entonces $\frac{dv}{dr} = 0$.
+2. Primera integración: $v = C_1 \implies \frac{ds}{dr} = C_1$.
+3. Segunda integración: $s = C_1 r + C_2$.
+
+### Paso 8: Solución Final
+Deshacemos el cambio de variables ($s=y$, $r=x$):
+$$\mathbf{y = C_1 x + C_2}$$
+
+
+
+### 💡 El Momento "¡Ajá!"
+Lo fascinante aquí es que el método no "adivina" la solución. Al separar por potencias de $y'$, el álgebra nos obliga a encontrar las funciones $\xi$ y $\eta$ que dejan la curvatura ($y''$) invariante. Elegir $\mathbf{X} = \partial_y$ significa que la EDO no cambia si la desplazamos verticalmente, lo cual es lógicamente consistente con una familia de rectas paralelas.
+
+</details>
