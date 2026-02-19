@@ -214,3 +214,41 @@ $$y \frac{d\eta}{dy} = \eta \implies \eta = y$$
 Este método me permite "extraer" la simetría directamente de la estructura de la EDO. He demostrado que la ecuación $y' = y/x$ admite al menos dos generadores de escala independientes ($\xi=x$ o $\eta=y$). En el ejercicio práctico, utilizaré el primero ($\xi=x, \eta=0$) para construir el factor integrante $\mu$.
 
 </details>
+
+
+<details>
+<summary><b>📅 19/02/2026: Salto a Segundo Orden: Prolongaciones y el Método de Cantwell/Arrigo</b> (Clic para expandir)</summary>
+
+### 1. El Desafío del Segundo Orden
+Cuando pasamos a ecuaciones del tipo $y'' = f(x, y, y')$, el generador infinitesimal $\mathbf{X}$ debe ser capaz de "ver" no solo la pendiente ($y'$), sino también la curvatura ($y''$). Para ello, recurro a la **segunda prolongación**.
+
+### 2. El Formulario de Extensión (Fórmulas Maestras)
+Basándome en la metodología de **Cantwell y Arrigo**, estas son las expresiones clave para las funciones extendidas:
+
+* **Primera prolongación ($\eta^{(1)}$):**
+    $$\eta^{(1)} = \eta_x + (\eta_y - \xi_x)y' - \xi_y(y')^2$$
+* **Segunda prolongación ($\eta^{(2)}$):**
+    $$\eta^{(2)} = \eta_{xx} + (2\eta_{xy} - \xi_{xx})y' + (\eta_{yy} - 2\xi_{xy})(y')^2 - \xi_{yy}(y')^3 + (\eta_y - 2\xi_x - 3\xi_y y')y''$$
+
+
+
+### 3. La Condición de Invariancia de Segundo Orden
+Para que la EDO sea invariante, el generador extendido debe anular la ecuación en su superficie de solución:
+$$\eta^{(2)} - \xi f_x - \eta f_y - \eta^{(1)} f_{y'} = 0 \quad \text{evaluado en } y'' = f$$
+
+### 4. Hoja de Ruta Sistemática (Algoritmo de Resolución)
+
+1.  **Planteamiento:** Sustituyo $\eta^{(1)}$ y $\eta^{(2)}$ en la condición de invariancia. Reemplazo cada $y''$ por la función $f(x, y, y')$ original.
+2.  **Separación por potencias:** Trato a $y'$ como una variable independiente. Agrupo términos por potencias de $y'$ ($(y')^0, (y')^1, (y')^2, (y')^3$) e igualo cada coeficiente a cero. Esto genera el sistema de **ecuaciones definitorias**.
+3.  **Bifurcación de Resolución:**
+    * **Caso A (1 Simetría):** Cambio a **Variables Canónicas** $(r, s)$ donde $\mathbf{X} = \partial_s$. La EDO reduce su orden de 2º a 1º.
+    * **Caso B (2+ Simetrías):** Calculo el conmutador $[X_1, X_2]$. Si forman un álgebra resoluble ($[X_1, X_2] = \lambda X_1$), la ecuación se resuelve mediante dos integraciones directas (cuadraturas).
+
+
+
+### Reflexión: De la Geometría a la Arquitectura
+Lo más potente de este nivel es el **Teorema de Clasificación de Lie**. He aprendido que si una EDO de segundo orden tiene el máximo de simetría (8 generadores), es fundamentalmente equivalente a $y'' = 0$. 
+
+Como *Solution Architect*, veo una analogía clara: resolver una EDO compleja mediante simetrías es como refactorizar un código monolítico buscando los patrones de diseño subyacentes. Una vez encuentras la simetría (el patrón), la solución (la implementación) se vuelve trivial y elegante.
+
+</details>
